@@ -3,7 +3,7 @@ import config from './config';
 
 const app = createApp();
 
-const port = config.PORT || 8080;
+const port = config.env.PORT || 8080;
 
 // eslint-disable-next-line no-console
-app.listen(config.PORT || 8080, () => console.log(`Server on Port ${port}`));
+app.listen(config.env.PORT || 8080, () => console.log(`Server on Port ${port}`));
