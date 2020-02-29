@@ -4,7 +4,7 @@
   "description": "This is the backend repo for IAPR's backend application",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node lib/index.js",
     "build": "babel src -d lib",
     "dev": "nodemon src --exec babel-node src",
     "lint": "eslint ./src",
