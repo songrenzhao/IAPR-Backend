@@ -4,11 +4,12 @@
   "description": "This is the backend repo for IAPR's backend application",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node lib/index.js",
-    "build": "babel src -d lib",
-    "dev": "nodemon src --exec babel-node src",
+    "dev": "nodemon --watch src --exec babel-node src",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "test": "jest",
+    "build": "babel src -d dist",
+    "start": "npm run build && node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +19,9 @@
     "@babel/core": "^7.8.6",
     "@babel/node": "^7.8.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.6",
+    "@babel/runtime": "^7.8.4",
     "apollo-server-express": "^2.10.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
