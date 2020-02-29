@@ -1,14 +1,15 @@
 import Admin from '../models/Admin';
+import Participant from '../models/Participant';
 
 export async function signUpAdmin(userInfo) {
   try {
     const {
       username, password, email, name,
     } = userInfo;
-    const userDoesExist = await Admin.find({
+    const admins = await Admin.find({
       $or: [{ username }, { name }],
     });
-    if (userDoesExist.length !== 0) {
+    if (admins.length !== 0) {
       return false;
     }
     const newAdmin = new Admin({
@@ -24,8 +25,33 @@ export async function signUpAdmin(userInfo) {
 export async function signInAdmin(userInfo) {
   try {
     const { username, password } = userInfo;
-    const userDoesMatch = await Admin.find({ username, password });
-    return userDoesMatch.length !== 0;
+    const admins = await Admin.find({ username, password });
+    return admins.length !== 0;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function signUpParticipant(userInfo) {
+  try {
+    const { name } = userInfo;
+    const participants = await Participant.find({ name });
+    if (participants.length !== 0) {
+      return false;
+    }
+    const newParticipant = new Participant({ name });
+    const response = await newParticipant.save();
+    return !!response;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function signInParticipant(userInfo) {
+  try {
+    const { name } = userInfo;
+    const participants = await Participant.find({ name });
+    return participants.length !== 0;
   } catch (err) {
     throw err;
   }
