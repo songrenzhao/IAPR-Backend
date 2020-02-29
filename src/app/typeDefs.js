@@ -30,7 +30,7 @@ const typeDefs = gql`
 
   type survey {
     name: String,
-    results: [results],
+    results(question: String): [results],
     createdAt: String,
     updatedAt: String,
   }

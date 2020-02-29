@@ -12,6 +12,16 @@ const resolvers = {
       return response;
     },
   },
+
+  survey: {
+    results: (parent, args) => {
+      if (args.question) {
+        return parent.results.filter((result) => result.question === args.question)
+      }
+      return parent.results;
+    },
+  },
+
   Mutation: {
     signUp: async (_, args) => {
       try {
