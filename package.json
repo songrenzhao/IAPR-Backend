@@ -11,6 +11,11 @@
     "build": "babel src -d dist",
     "start": "npm run build && node dist/index.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
