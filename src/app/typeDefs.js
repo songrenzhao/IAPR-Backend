@@ -16,7 +16,7 @@ const typeDefs = gql`
 
   input selections {
     choice: String!,
-    url: String!,
+    url: String,
   }
 
   type Participant {
