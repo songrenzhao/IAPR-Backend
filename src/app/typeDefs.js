@@ -4,13 +4,19 @@ const typeDefs = gql`
   input resultsInput {
     question: String!,
     answer: [String!]!
+  } 
+ 
+  input formData {
+    title: String!,
+    description: String!,
+    limit: Int!,
+    question: String!,
+    selections: [selections!]!,
   }
 
-  type Query {
-    hello: String!
-    admins: [Admin!]!
-    participants: [Participant!]!
-    surveys(name: String, date: String!): [survey]
+  input selections {
+    choice: String!,
+    url: String!,
   }
 
   type Participant {
@@ -40,12 +46,34 @@ const typeDefs = gql`
     updatedAt: String,
   }
 
+  type surveyForm {
+    title: String!,
+    description: String!,
+    limit: Int!,
+    question: String!,
+    selections: [selectionsOutput!]!,
+  }
+
+  type selectionsOutput {
+    choice: String!,
+    url: String!,
+  }
+
+  type Query {
+    hello: String!
+    admins: [Admin!]!
+    participants: [Participant!]!
+    surveys(name: String, date: String!): [survey]
+    viewSurveyForm(date: String): [surveyForm]
+  }
+
   type Mutation {
     signUp(name: String!, username: String!, email: String!, password: String!): statusMessage
     signIn(username: String!, password: String!): statusMessage
     signUpParticipant(name: String!): statusMessage
     signInParticipant(name: String!): statusMessage
-    createSurvey(name: String!, results: [resultsInput!]!, createdAt: String, updatedAt: String): survey
+    createSurveyForm(formData: [formData!]!, createdAt: String): statusMessage
+    createSurveyResponse(name: String!, results: [resultsInput!]!, createdAt: String, updatedAt: String): survey
   }
 `;
 

@@ -4,7 +4,9 @@ import Participant from '../models/Participant';
 import {
   signUpAdmin, signInAdmin, signUpParticipant, signInParticipant,
 } from '../service/authService';
-import { createSurvey, viewSurvey } from '../service/surveyService';
+import {
+  createSurveyResponse, viewSurvey, createSurveyForm, viewSurveyForm,
+} from '../service/surveyService';
 
 const resolvers = {
   Query: {
@@ -13,6 +15,10 @@ const resolvers = {
     participants: () => Participant.find(),
     surveys: async (_, args) => {
       const response = await viewSurvey(args);
+      return response;
+    },
+    viewSurveyForm: async (_, args) => {
+      const response = await viewSurveyForm(args);
       return response;
     },
   },
@@ -47,14 +53,6 @@ const resolvers = {
         throw new UserInputError('Please Check Again');
       }
     },
-    createSurvey: async (_, args) => {
-      try {
-        const response = await createSurvey(args);
-        return response;
-      } catch (err) {
-        throw new UserInputError('Please Check Again');
-      }
-    },
     signUpParticipant: async (_, args) => {
       try {
         const response = await signUpParticipant(args);
@@ -71,6 +69,24 @@ const resolvers = {
         return {
           status: response,
         };
+      } catch (err) {
+        throw new UserInputError('Please Check Again');
+      }
+    },
+    createSurveyForm: async (_, args) => {
+      try {
+        const response = await createSurveyForm(args);
+        return {
+          status: response,
+        };
+      } catch (err) {
+        throw new UserInputError('Please Check Again');
+      }
+    },
+    createSurveyResponse: async (_, args) => {
+      try {
+        const response = await createSurveyResponse(args);
+        return response;
       } catch (err) {
         throw new UserInputError('Please Check Again');
       }

@@ -1,4 +1,5 @@
 import Survey from '../models/Survey';
+import SurveyForm from '../models/SurveyForm';
 
 const preprepareViewSurveyPayload = (surveyInfo) => {
   const { name, date } = surveyInfo;
@@ -14,7 +15,7 @@ const preprepareViewSurveyPayload = (surveyInfo) => {
   return query;
 };
 
-export async function createSurvey(surveyInfo) {
+export async function createSurveyResponse(surveyInfo) {
   try {
     const { name, question, results } = surveyInfo;
     const newSurvey = new Survey({ name, question, results });
@@ -30,6 +31,27 @@ export async function viewSurvey(surveyInfo) {
     const payload = preprepareViewSurveyPayload(surveyInfo);
     const surveys = await Survey.find(payload);
     return surveys;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function createSurveyForm(surveyInfo) {
+  try {
+    const { formData, createdAt } = surveyInfo;
+    const newSurveyFom = new SurveyForm({ formData, createdAt });
+    const response = await newSurveyFom.save();
+    return !!response;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function viewSurveyForm() {
+  try {
+    const [surveys] = await SurveyForm.find().sort({ createdAt: 'descending' }).limit(1);
+    const { formData } = surveys;
+    return formData;
   } catch (err) {
     throw err;
   }
