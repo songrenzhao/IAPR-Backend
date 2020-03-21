@@ -2,7 +2,7 @@ import { UserInputError } from 'apollo-server-express';
 import Admin from '../models/Admin';
 import Participant from '../models/Participant';
 import {
-  signUpAdmin, signInAdmin, signUpParticipant, signInParticipant,
+  signUpAdmin, signInAdmin, signUpParticipant, signInParticipant, removeParticipant,
 } from '../service/authService';
 import {
   createSurveyResponse, viewSurvey, createSurveyForm, viewSurveyForm,
@@ -56,6 +56,16 @@ const resolvers = {
     signUpParticipant: async (_, args) => {
       try {
         const response = await signUpParticipant(args);
+        return {
+          status: response,
+        };
+      } catch (err) {
+        throw new UserInputError('Please Check Again');
+      }
+    },
+    removeParticipant: async (_, args) => {
+      try {
+        const response = await removeParticipant(args);
         return {
           status: response,
         };

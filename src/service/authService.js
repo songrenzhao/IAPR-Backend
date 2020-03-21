@@ -47,6 +47,20 @@ export async function signUpParticipant(userInfo) {
   }
 }
 
+export async function removeParticipant(userInfo) {
+  try {
+    const { name } = userInfo;
+    const participants = await Participant.find({ name });
+    if (participants.length === 0) {
+      return false;
+    }
+    const { ok: response } = await Participant.deleteOne({ name });
+    return !!response;
+  } catch (err) {
+    throw err;
+  }
+}
+
 export async function signInParticipant(userInfo) {
   try {
     const { name } = userInfo;

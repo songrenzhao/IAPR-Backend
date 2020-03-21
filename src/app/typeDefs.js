@@ -71,6 +71,7 @@ const typeDefs = gql`
     signUp(name: String!, username: String!, email: String!, password: String!): statusMessage
     signIn(username: String!, password: String!): statusMessage
     signUpParticipant(name: String!): statusMessage
+    removeParticipant(name: String!): statusMessage
     signInParticipant(name: String!): statusMessage
     createSurveyForm(formData: [formData!]!, createdAt: String): statusMessage
     createSurveyResponse(name: String!, results: [resultsInput!]!, createdAt: String, updatedAt: String): survey
