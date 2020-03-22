@@ -5,8 +5,8 @@ const preprepareViewSurveyPayload = (surveyInfo) => {
   const { name, date } = surveyInfo;
   const query = {
     createdAt: {
-      $gte: new Date(new Date(date) - 6 * 60 * 60 * 1000),
-      $lte: new Date(),
+      $gte: new Date(parseInt(date, 10) - 1),
+      $lte: new Date(parseInt(date, 10) + 1),
     },
   };
   if (name) {
