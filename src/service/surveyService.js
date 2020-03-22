@@ -3,12 +3,21 @@ import SurveyForm from '../models/SurveyForm';
 
 const preprepareViewSurveyPayload = (surveyInfo) => {
   const { name, date } = surveyInfo;
-  const query = {
-    createdAt: {
-      $gte: new Date(parseInt(date, 10) - 1),
-      $lte: new Date(parseInt(date, 10) + 1),
-    },
-  };
+  const query = {};
+  if (!!date) {
+    Object.assign(query, {
+      createdAt: {
+        $gte: new Date(parseInt(date, 10) - 1),
+        $lte: new Date(parseInt(date, 10) + 1),
+      },
+    });
+  } else {
+    Object.assign(query, {
+      createdAt: {
+        $lte: new Date(),
+      },
+    });
+  }
   if (name) {
     Object.assign(query, { name });
   }

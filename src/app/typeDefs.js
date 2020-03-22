@@ -63,7 +63,7 @@ const typeDefs = gql`
     hello: String!
     admins: [Admin!]!
     participants: [Participant!]!
-    surveys(name: String, date: String!): [survey]
+    surveys(name: String, date: String): [survey]
     viewSurveyForm(date: String): [surveyForm]
   }
 
