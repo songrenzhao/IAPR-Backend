@@ -19,6 +19,24 @@ const typeDefs = gql`
     url: String,
   }
 
+  input weeklyPlanning {
+    activity: String!,
+    url: String,
+  }
+
+  input weeklyPlannings {
+    selections: [weeklyPlanning!]!
+  }
+
+  type weeklyPlanningOutput {
+    activity: String!,
+    url: String,
+  }
+
+  type weeklyPlanningOutputs {
+    selections: [weeklyPlanningOutput!]!
+  }
+
   type Participant {
     name: String!
   }
@@ -65,6 +83,7 @@ const typeDefs = gql`
     participants: [Participant!]!
     surveys(name: String, date: String): [survey]
     viewSurveyForm(date: String): [surveyForm]
+    viewWeeklyPlanning: [weeklyPlanningOutputs!]!
   }
 
   type Mutation {
@@ -75,6 +94,7 @@ const typeDefs = gql`
     signInParticipant(name: String!): statusMessage
     createSurveyForm(formData: [formData!]!, createdAt: String): statusMessage
     createSurveyResponse(name: String!, results: [resultsInput!]!, createdAt: String, updatedAt: String): survey
+    createWeeklyPlanning(weeklyPlanningData: [weeklyPlannings!]!): statusMessage
   }
 `;
 

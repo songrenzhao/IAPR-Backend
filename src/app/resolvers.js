@@ -7,6 +7,7 @@ import {
 import {
   createSurveyResponse, viewSurvey, createSurveyForm, viewSurveyForm,
 } from '../service/surveyService';
+import { createWeeklyPlanning, viewWeeklyPlanning } from '../service/weeklyFormService';
 
 const resolvers = {
   Query: {
@@ -19,6 +20,10 @@ const resolvers = {
     },
     viewSurveyForm: async (_, args) => {
       const response = await viewSurveyForm(args);
+      return response;
+    },
+    viewWeeklyPlanning: async () => {
+      const response = await viewWeeklyPlanning();
       return response;
     },
   },
@@ -97,6 +102,16 @@ const resolvers = {
       try {
         const response = await createSurveyResponse(args);
         return response;
+      } catch (err) {
+        throw new UserInputError('Please Check Again');
+      }
+    },
+    createWeeklyPlanning: async (_, args) => {
+      try {
+        const response = await createWeeklyPlanning(args);
+        return {
+          status: response,
+        };
       } catch (err) {
         throw new UserInputError('Please Check Again');
       }
