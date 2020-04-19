@@ -28,6 +28,15 @@ const typeDefs = gql`
     selections: [weeklyPlanning!]!
   }
 
+  input activityReactionArray {
+    selections: [activitySelection!]!
+  }
+
+  input activitySelection {
+    activity: String
+    reaction: String
+  }
+
   type weeklyPlanningOutput {
     activity: String!,
     url: String,
@@ -95,6 +104,7 @@ const typeDefs = gql`
     createSurveyForm(formData: [formData!]!, createdAt: String): statusMessage
     createSurveyResponse(name: String!, results: [resultsInput!]!, createdAt: String, updatedAt: String): survey
     createWeeklyPlanning(weeklyPlanningData: [weeklyPlannings!]!): statusMessage
+    createWeeklyPlanningResponse(data: [activityReactionArray]!, participant: String!): statusMessage
   }
 `;
 
