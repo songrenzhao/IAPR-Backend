@@ -3,6 +3,7 @@ import SurveyForm from '../models/SurveyForm';
 
 const preprepareViewSurveyPayload = (surveyInfo) => {
   const { name, date } = surveyInfo;
+
   const query = {};
   if (!!date) {
     Object.assign(query, {
@@ -14,6 +15,7 @@ const preprepareViewSurveyPayload = (surveyInfo) => {
   } else {
     Object.assign(query, {
       createdAt: {
+        $gte: new Date() - 2 * 24 * 60 * 60 * 1000, // display 2 days
         $lte: new Date(),
       },
     });

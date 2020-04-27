@@ -7,7 +7,9 @@ import {
 import {
   createSurveyResponse, viewSurvey, createSurveyForm, viewSurveyForm,
 } from '../service/surveyService';
-import { createWeeklyPlanning, viewWeeklyPlanning, createWeeklyPlanningResponse } from '../service/weeklyFormService';
+import {
+  createWeeklyPlanning, viewWeeklyPlanning, createWeeklyPlanningResponse, viewWeeklyPlanningResponse,
+} from '../service/weeklyFormService';
 
 const resolvers = {
   Query: {
@@ -24,6 +26,10 @@ const resolvers = {
     },
     viewWeeklyPlanning: async () => {
       const response = await viewWeeklyPlanning();
+      return response;
+    },
+    viewWeeklyPlanningResponse: async (_, args) => {
+      const response = await viewWeeklyPlanningResponse(args);
       return response;
     },
   },

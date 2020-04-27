@@ -86,6 +86,21 @@ const typeDefs = gql`
     url: String!,
   }
 
+  type weeklyPlanningParticipantSelection {
+    activity: String!,
+    reaction: String,
+  }
+
+  type weeklyPlanningParticipantSelections {
+    selections: [weeklyPlanningParticipantSelection]!
+  }
+
+  type weeklyPlanningParticipantResponse {
+    formData: [weeklyPlanningParticipantSelections]!
+    participant: String!
+    createdAt: String
+  }
+
   type Query {
     hello: String!
     admins: [Admin!]!
@@ -93,6 +108,7 @@ const typeDefs = gql`
     surveys(name: String, date: String): [survey]
     viewSurveyForm(date: String): [surveyForm]
     viewWeeklyPlanning: [weeklyPlanningOutputs!]!
+    viewWeeklyPlanningResponse(participant: String, createdAt: String): [weeklyPlanningParticipantResponse]
   }
 
   type Mutation {
