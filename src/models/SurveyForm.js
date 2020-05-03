@@ -19,14 +19,6 @@ const formDataSchema = new Schema({
     type: String,
     required: true,
   },
-  limit: {
-    type: Number,
-    required: true,
-  },
-  question: {
-    type: String,
-    required: true,
-  },
   selections: {
     type: [selectionSchema],
     required: true,

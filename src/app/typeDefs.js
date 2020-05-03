@@ -9,8 +9,6 @@ const typeDefs = gql`
   input formData {
     title: String!,
     description: String!,
-    limit: Int!,
-    question: String!,
     selections: [selections!]!,
   }
 
