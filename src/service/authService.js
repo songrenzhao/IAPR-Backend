@@ -34,12 +34,12 @@ export async function signInAdmin(userInfo) {
 
 export async function signUpParticipant(userInfo) {
   try {
-    const { name } = userInfo;
+    const { name, picture } = userInfo;
     const participants = await Participant.find({ name });
     if (participants.length !== 0) {
       return false;
     }
-    const newParticipant = new Participant({ name });
+    const newParticipant = new Participant({ name, picture });
     const response = await newParticipant.save();
     return !!response;
   } catch (err) {
