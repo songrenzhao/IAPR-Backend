@@ -5,6 +5,9 @@ const participantSchema = new Schema({
     type: String,
     required: true,
   },
+  picture: {
+    type: String,
+  },
 });
 
 const participant = mongoose.model('participants', participantSchema);

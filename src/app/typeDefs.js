@@ -46,6 +46,7 @@ const typeDefs = gql`
 
   type Participant {
     name: String!
+    picture: String
   }
 
   type Admin {
@@ -102,7 +103,7 @@ const typeDefs = gql`
   type Query {
     hello: String!
     admins: [Admin!]!
-    participants: [Participant!]!
+    participants: [Participant]!
     surveys(name: String, date: String): [survey]
     viewSurveyForm(date: String): [surveyForm]
     viewWeeklyPlanning: [weeklyPlanningOutputs!]!
@@ -112,7 +113,7 @@ const typeDefs = gql`
   type Mutation {
     signUp(name: String!, username: String!, email: String!, password: String!): statusMessage
     signIn(username: String!, password: String!): statusMessage
-    signUpParticipant(name: String!): statusMessage
+    signUpParticipant(name: String!, picture: String): statusMessage
     removeParticipant(name: String!): statusMessage
     signInParticipant(name: String!): statusMessage
     createSurveyForm(formData: [formData!]!, createdAt: String): statusMessage
