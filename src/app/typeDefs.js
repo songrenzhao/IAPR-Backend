@@ -75,8 +75,6 @@ const typeDefs = gql`
   type surveyForm {
     title: String!,
     description: String!,
-    limit: Int!,
-    question: String!,
     selections: [selectionsOutput!]!,
   }
 
