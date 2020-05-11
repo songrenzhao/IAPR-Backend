@@ -15,8 +15,8 @@ export async function updateSchedules(schedulesInfo) {
 export async function viewSchedules() {
   try {
     const [schedules] = await Schedules.find({});
-    const { schedule } = schedules;
-    return schedule;
+    const { schedule } = schedules || [];
+    return schedule || [];
   } catch (err) {
     throw err;
   }
