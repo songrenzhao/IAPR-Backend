@@ -10,7 +10,7 @@ const scheduleSchema = new Schema({
   endDate: {
     type: String,
   },
-  note: {
+  notes: {
     type: String,
   },
   id: {
