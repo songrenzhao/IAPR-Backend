@@ -10,6 +10,9 @@ import {
 import {
   createWeeklyPlanning, viewWeeklyPlanning, createWeeklyPlanningResponse, viewWeeklyPlanningResponse,
 } from '../service/weeklyFormService';
+import {
+  updateSchedules, viewSchedules,
+} from '../service/scheduleService';
 
 const resolvers = {
   Query: {
@@ -30,6 +33,10 @@ const resolvers = {
     },
     viewWeeklyPlanningResponse: async (_, args) => {
       const response = await viewWeeklyPlanningResponse(args);
+      return response;
+    },
+    viewSchedule: async () => {
+      const response = await viewSchedules();
       return response;
     },
   },
@@ -120,6 +127,16 @@ const resolvers = {
         };
       } catch (err) {
         throw new UserInputError('Please Check Again');
+      }
+    },
+    updateSchedule: async (_, args) => {
+      try {
+        const response = await updateSchedules(args);
+        return {
+          status: response,
+        };
+      } catch (err) {
+        throw err;
       }
     },
     createWeeklyPlanningResponse: async (_, args) => {

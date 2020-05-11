@@ -35,6 +35,13 @@ const typeDefs = gql`
     reaction: String
   }
 
+  input scheduleInput {
+    title: String,
+    startDate: String,
+    endDate: String,
+    id: Int,
+  }
+
   type weeklyPlanningOutput {
     activity: String!,
     url: String,
@@ -98,6 +105,13 @@ const typeDefs = gql`
     createdAt: String
   }
 
+  type schedule {
+    title: String,
+    startDate: String,
+    endDate: String,
+    id: String,
+  }
+
   type Query {
     hello: String!
     admins: [Admin!]!
@@ -106,6 +120,7 @@ const typeDefs = gql`
     viewSurveyForm(date: String): [surveyForm]
     viewWeeklyPlanning: [weeklyPlanningOutputs!]!
     viewWeeklyPlanningResponse(participant: String, createdAt: String): [weeklyPlanningParticipantResponse]
+    viewSchedule: [schedule]
   }
 
   type Mutation {
@@ -117,6 +132,7 @@ const typeDefs = gql`
     createSurveyForm(formData: [formData!]!, createdAt: String): statusMessage
     createSurveyResponse(name: String!, results: [resultsInput!]!, createdAt: String, updatedAt: String): survey
     createWeeklyPlanning(weeklyPlanningData: [weeklyPlannings!]!): statusMessage
+    updateSchedule(schedule: [scheduleInput]): statusMessage
     createWeeklyPlanningResponse(data: [activityReactionArray]!, participant: String!): statusMessage
   }
 `;
