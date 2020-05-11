@@ -39,6 +39,7 @@ const typeDefs = gql`
     title: String,
     startDate: String,
     endDate: String,
+    note: String,
     id: Int,
     allDay: Boolean
   }
@@ -110,6 +111,7 @@ const typeDefs = gql`
     title: String,
     startDate: String,
     endDate: String,
+    note: String,
     id: String,
     allDay: Boolean
   }
