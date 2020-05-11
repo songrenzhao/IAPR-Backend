@@ -40,6 +40,7 @@ const typeDefs = gql`
     startDate: String,
     endDate: String,
     id: Int,
+    allDay: Boolean
   }
 
   type weeklyPlanningOutput {
@@ -110,6 +111,7 @@ const typeDefs = gql`
     startDate: String,
     endDate: String,
     id: String,
+    allDay: Boolean
   }
 
   type Query {

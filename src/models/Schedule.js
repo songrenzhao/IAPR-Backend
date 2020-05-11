@@ -13,6 +13,9 @@ const scheduleSchema = new Schema({
   id: {
     type: Number,
   },
+  allDay: {
+    type: Boolean,
+  },
 });
 
 const schedulesArraySchema = new Schema({
